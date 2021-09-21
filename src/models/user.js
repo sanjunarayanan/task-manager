@@ -72,7 +72,6 @@ userSchema.pre('save', async function(next){
 
 
 // generate Auth Token 
-
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     console.log("Created User :",user)
@@ -83,6 +82,10 @@ userSchema.methods.generateAuthToken = async function () {
     return token
 }
 
+// When a Mongoose document is passed to res.send, 
+// Mongoose converts the object into JSON. 
+// You can customize this by adding toJSON as a method on the object. The method
+// below removes the password and tokens properties before sending the response back.
 
 userSchema.methods.toJSON = function() {
     const user = this 
